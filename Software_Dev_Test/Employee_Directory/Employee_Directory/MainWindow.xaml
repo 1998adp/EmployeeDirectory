@@ -1,0 +1,174 @@
+﻿<Window x:Class="Employee_Directory.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Employee_Directory"
+        mc:Ignorable="d"
+        Title="Employee Directory" Height="450" Width="800" Background ="Black">
+    
+    <Grid Margin="10" Background ="Red">
+        
+        <!--Seperates the Window into two parts (1) For diplaying the Employees and menus (2) For the Main Buttons  -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Name="listBoxArea" Width="2*"/>
+            <ColumnDefinition Name ="ButtonArea"  Width="1*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <!--This the the ListBox section with the ItemTemplate for how each item should look-->
+        <ListBox x:Name="Employee_List" HorizontalContentAlignment="Stretch" Background="DimGray">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2" >
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                        <TextBlock Grid.Column ="1"  Text="{Binding Title}" FontWeight="Bold"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+
+        <!--This is the Main Button section-->
+        <StackPanel x:Name="Buttons" Grid.Column="1" Margin="25" VerticalAlignment="top">
+
+            <Button x:Name="InsertList" Content="Insert" Margin="10" Click ="InsertButton_Click"
+                    Background ="DimGray" BorderBrush="black" Foreground="GhostWhite" FontWeight="Bold"/>
+            
+            <Button x:Name="updateList" Content="Update" Margin="10" Click ="UpdateButton_Click"
+                    Background ="DimGray" BorderBrush="black" Foreground="GhostWhite" FontWeight="Bold"/>
+
+            <Button x:Name="deleteList" Content="Delete" Margin="10" Click ="DeleteButton_Click"
+                    Background ="DimGray" BorderBrush="black" Foreground="GhostWhite" FontWeight="Bold"/>
+
+            <Button x:Name="loadList" Content="Load" Margin="10" Click ="LoadButton_Click"
+                    Background ="DimGray" BorderBrush="black" Foreground="GhostWhite" FontWeight="Bold"/>
+
+            <Button x:Name="SaveList" Content="Save" Margin="10" Click ="SaveButton_Click"
+                    Background ="DimGray" BorderBrush="black" Foreground="GhostWhite" FontWeight="Bold"/>
+
+        </StackPanel>
+
+        <!--This the the Insert Input menu section-->
+        <Grid x:Name="InsertInput" Visibility="Collapsed">
+            <Grid Background="black" Opacity="0.75"/>
+            <Border 
+                MinWidth="250" 
+                Background="DimGray" 
+                BorderBrush ="Black" 
+                BorderThickness ="1" 
+                CornerRadius="10,10,10,10" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center">
+                <StackPanel Name="InsertStack" Orientation = "Vertical" Margin="10">
+
+                    <TextBlock Margin="5" Text="Employee Name" FontWeight="Bold" />
+                    <TextBox x:Name="InsertNameBox" MinWidth="150" HorizontalAlignment="Center" />
+
+                    <TextBlock Margin="5" Text="Employee Title" FontWeight="Bold" />
+                    <TextBox x:Name="InsertTitleBox" MinWidth="150" HorizontalAlignment="Center" />
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        
+                        <Button x:Name="InsertEnter" Margin="5" Content="Enter" Click="InsertInput_Click" 
+                                Background ="Gray" BorderBrush="black" FontWeight="Bold"/>
+                        
+                        <Button x:Name="InsertCancel" Margin="5" Content="Cancel" Click="InsertCancel_Click" 
+                                Background ="Gray" BorderBrush="black" FontWeight="Bold"/>
+                        
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!--This the the Update Input menu section-->
+        <Grid x:Name="UpdateInput" Visibility="Collapsed">
+            <Grid Background="black" Opacity="0.75"/>
+            <Border 
+                MinWidth="250" 
+                Background="DimGray" 
+                BorderBrush ="Black" 
+                BorderThickness ="1" 
+                CornerRadius="10,10,10,10" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center">
+                <StackPanel Name="UpdateStack" Orientation = "Vertical" Margin="10">
+
+                    <TextBlock Margin="5" Text="Employee's new Name" FontWeight="Bold" />
+                    <TextBox x:Name="UpdateNameBox" MinWidth="150" HorizontalAlignment="Center" />
+
+                    <TextBlock Margin="5" Text="Employee's new Title" FontWeight="Bold" />
+                    <TextBox x:Name="UpdateTitleBox" MinWidth="150" HorizontalAlignment="Center" />
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        
+                        <Button x:Name="UpdateEnter" Margin="5" Content="Enter" Click="UpdateInput_Click" 
+                                Background ="Gray" BorderBrush="black" FontWeight="Bold"/>
+                        
+                        <Button x:Name="UpdateCancel" Margin="5" Content="Cancel" Click="UpdateCancel_Click" 
+                                Background ="Gray" BorderBrush="black" FontWeight="Bold"/>
+                        
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!--This the the Notify menu section-->
+        <Grid x:Name="Notify" Visibility="Collapsed">
+            <Grid Background="black" Opacity="0.75"/>
+            <Border 
+                MinWidth="250" 
+                Background="DimGray" 
+                BorderBrush ="Black" 
+                BorderThickness ="1" 
+                CornerRadius="10,10,10,10" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center">
+                <StackPanel Name="NotifyStack" Orientation = "Vertical" Margin="10">
+
+                    <TextBlock x:Name="NotifyingMessage" Margin="5" FontWeight="Bold" HorizontalAlignment="Center" MaxWidth="400" TextWrapping="WrapWithOverflow"/>
+                    <Button x:Name="NotifyButton" Margin="5" Content="Enter" Click="Notify_Click" 
+                            Background ="Gray" BorderBrush="black" FontWeight="Bold"/>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!--This the the PathLoading menu-->
+        <Grid x:Name="PathLoading" Visibility="Visible">
+            <Grid Background="black" Opacity="0.75"/>
+            <Border 
+                MinWidth="250" 
+                Background="DimGray" 
+                BorderBrush ="Black" 
+                BorderThickness ="1" 
+                CornerRadius="10,10,10,10" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center">
+                <StackPanel Name="PathStack" Orientation = "Vertical" Margin="10">
+
+                    <TextBlock Margin="5" Text="File Path:" FontWeight="Bold" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                        <TextBox x:Name="PathBox" MinWidth="150" MaxWidth="300" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                        <Button x:Name="BrowseButton" Margin="5" Content="Browse" Click="Browse_Click" 
+                                Background ="Gray" BorderBrush="black" FontWeight="Bold"/>
+
+                    </StackPanel>
+                    <Button x:Name="FileButton" Margin="5" Content="Enter" Click="LoadEnter_Click" 
+                            Background ="Gray" BorderBrush="black" FontWeight="Bold" Visibility="Visible"/>
+
+
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        
+    </Grid>
+
+</Window>
