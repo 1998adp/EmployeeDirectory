@@ -1,6 +1,4 @@
-# GroverGamingSoftwereDevTest
-
-My Grover Gameing Software Dev Test
+# Employee Directory Application
 
 This is an Employee Directory Application
 
